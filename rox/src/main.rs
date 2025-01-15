@@ -2,14 +2,19 @@ mod scanner;
 mod token;
 mod token_type;
 mod expr;
-mod ast_printer;
+// mod ast_printer;
 mod parser;
+mod interpreter;
+mod runtime_error;
+mod object;
 
 use crate::scanner::Scanner;
 use crate::token::Token;
 use crate::token_type::TokenType;
-use crate::ast_printer::AstPrinter;
+// use crate::ast_printer::AstPrinter;
 use crate::parser::Parser;
+use crate::interpreter::Interpreter;
+use crate::runtime_error::RuntimeError;
 
 use std::env;
 use std::fs;
@@ -17,14 +22,21 @@ use std::io::{self, BufRead, Write};
 
 pub struct Rox
 {
+    interpreter: Interpreter,
     had_error: bool,
+    had_runtime_error: bool,
 }
 
 impl Rox
 {
     pub fn new() -> Self
     {
-        Rox { had_error: false }
+        Rox
+        {
+            interpreter: Interpreter::new(),
+            had_error: false,
+            had_runtime_error: false,
+        }
     }
 
     fn main()
@@ -54,6 +66,10 @@ impl Rox
                 if self.had_error
                 {
                     std::process::exit(65);
+                }
+                if self.had_runtime_error
+                {
+                    std::process::exit(70);
                 }
             }
             Err(e) =>
@@ -100,19 +116,10 @@ impl Rox
             return;
         }
 
-        let mut ast_printer = AstPrinter;
-
-        // Dereference expr
-        match expression
+        if let Some(expr) = expression
         {
-            Some(ref expr) =>
-            {
-                println!("{}", ast_printer.print(expr));
-            }
-            None =>
-            {
-                println!("No expression to print");
-            }
+            let mut rox = Rox::new();
+            self.interpreter.interpret(expr, &mut rox);
         }
     }
 
@@ -137,6 +144,12 @@ impl Rox
         {
             self.report(token.line, &format!(" at '{}'", token.lexeme), message);
         }
+    }
+
+    pub fn runtime_error(&mut self, error: &RuntimeError)
+    {
+        eprintln!("{} [line {}]", error.message, error.token.line);
+        self.had_runtime_error = true;
     }
 }
 
