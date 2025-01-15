@@ -39,14 +39,14 @@ class Parser {
     private Stmt printStatement()
     {
         Expr value = expression();
-        consume(SEMICOLON, "Expect ';' after value.");
+        consume(SEMICOLON, "Expected ';' after value.");
         return new Stmt.Print(value);
     }
 
     private Stmt expressionStatement()
     {
         Expr expr = expression();
-        consume(SEMICOLON, "Expect ';' after expression.");
+        consume(SEMICOLON, "Expected ';' after expression.");
         return new Stmt.Expression(expr);
     }
 
@@ -123,10 +123,10 @@ class Parser {
         if (match(LEFT_PAREN))
         {
             Expr expr = expression();
-            consume(RIGHT_PAREN, "Expect ')' after expression.");
+            consume(RIGHT_PAREN, "Expected ')' after expression.");
             return new Expr.Grouping(expr);
         }
-        throw error(peek(), "Expect expression.");
+        throw error(peek(), "Expected expression.");
     }
 
     private boolean match(TokenType... types)
