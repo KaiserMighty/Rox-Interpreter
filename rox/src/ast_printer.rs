@@ -5,12 +5,12 @@ pub struct AstPrinter;
 
 impl AstPrinter
 {
-    pub fn print(&self, expr: &Expr) -> String
+    pub fn print(&mut self, expr: &Expr) -> String
     {
         expr.accept(self)
     }
 
-    fn parenthesize(&self, name: &str, exprs: &[&Expr]) -> String
+    fn parenthesize(&mut self, name: &str, exprs: &[&Expr]) -> String
     {
         let mut builder = String::new();
         builder.push('(');

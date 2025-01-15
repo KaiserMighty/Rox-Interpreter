@@ -1,8 +1,15 @@
 mod scanner;
 mod token;
 mod token_type;
+mod expr;
+mod ast_printer;
+mod parser;
 
-use scanner::Scanner;
+use crate::scanner::Scanner;
+use crate::token::Token;
+use crate::token_type::TokenType;
+use crate::ast_printer::AstPrinter;
+use crate::parser::Parser;
 
 use std::env;
 use std::fs;
@@ -84,10 +91,28 @@ impl Rox
         let mut scanner = Scanner::new(source.to_string(), self);
         let tokens = scanner.scan_tokens();
 
-        // For now, just print the tokens.
-        for token in tokens
+        let mut parser = Parser::new(&tokens);
+        let expression = parser.parse();
+
+        // Stop if there was a syntax error
+        if self.had_error
         {
-            println!("{:?}", token);
+            return;
+        }
+
+        let mut ast_printer = AstPrinter;
+
+        // Dereference expr
+        match expression
+        {
+            Some(ref expr) =>
+            {
+                println!("{}", ast_printer.print(expr));
+            }
+            None =>
+            {
+                println!("No expression to print");
+            }
         }
     }
 
@@ -96,10 +121,22 @@ impl Rox
         self.report(line, "", message);
     }
 
-    fn report(&mut self, line: usize, where_: &str, message: &str)
+    fn report(&mut self, line: usize, location: &str, message: &str)
     {
-        eprintln!("[line {}] Error{}: {}", line, where_, message);
+        eprintln!("[line {}] Error{}: {}", line, location, message);
         self.had_error = true;
+    }
+
+    pub fn error_token(&mut self, token: &Token, message: &str)
+    {
+        if token.token_type == TokenType::Eof
+        {
+            self.report(token.line, " at end", message);
+        }
+        else
+        {
+            self.report(token.line, &format!(" at '{}'", token.lexeme), message);
+        }
     }
 }
 
