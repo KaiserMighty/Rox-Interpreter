@@ -1,3 +1,4 @@
+/*
 package interpreter;
 
 class AstPrinter implements Expr.Visitor<String>
@@ -46,3 +47,4 @@ class AstPrinter implements Expr.Visitor<String>
         return builder.toString();
     }
 }
+*/
