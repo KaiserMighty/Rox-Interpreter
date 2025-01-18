@@ -6,11 +6,13 @@ import java.util.Map;
 class RoxClass implements RoxCallable
 {
     final String name;
+    final RoxClass superclass;
     private final Map<String, RoxFunction> methods;
 
-    RoxClass(String name, Map<String, RoxFunction> methods)
+    RoxClass(String name, RoxClass superclass, Map<String, RoxFunction> methods)
     {
         this.name = name;
+        this.superclass = superclass;
         this.methods = methods;
     }
 
@@ -19,6 +21,10 @@ class RoxClass implements RoxCallable
         if (methods.containsKey(name))
         {
             return methods.get(name);
+        }
+        if (superclass != null)
+        {
+            return superclass.findMethod(name);
         }
         return null;
     }
