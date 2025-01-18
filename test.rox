@@ -1,10 +1,12 @@
-func fib(n)
+class Cake
 {
-    if (n <= 1) return n;
-    return fib(n - 2) + fib(n - 1);
+    taste()
+    {
+        var adjective = "delicious";
+        print "The " + this.flavor + " cake is " + adjective + "!";
+    }
 }
 
-for (var i = 0; i < 20; i = i + 1)
-{
-    print fib(i);
-}
+var cake = Cake();
+cake.flavor = "German chocolate";
+cake.taste(); 

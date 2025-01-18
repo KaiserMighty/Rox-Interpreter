@@ -6,11 +6,20 @@ class RoxFunction implements RoxCallable
 {
     private final Stmt.Function declaration;
     private final Environment closure;
+    private final boolean isInitializer;
 
-    RoxFunction(Stmt.Function declaration, Environment closure)
+    RoxFunction(Stmt.Function declaration, Environment closure, boolean isInitializer)
     {
         this.closure = closure;
         this.declaration = declaration;
+        this.isInitializer = isInitializer;
+    }
+
+    RoxFunction bind(RoxInstance instance)
+    {
+        Environment environment = new Environment(closure);
+        environment.define("this", instance);
+        return new RoxFunction(declaration, environment, isInitializer);
     }
 
     @Override
@@ -40,8 +49,11 @@ class RoxFunction implements RoxCallable
         }
         catch (Return returnValue)
         {
+            if (isInitializer) return closure.getAt(0, "this");
             return returnValue.value;
         }
+
+        if (isInitializer) return closure.getAt(0, "this");
         return null;
     }
 }
