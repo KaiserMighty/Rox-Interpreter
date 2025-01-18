@@ -10,6 +10,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void>
     final Environment globals = new Environment();
     private Environment environment = globals;
     private final Map<Expr, Integer> locals = new HashMap<>();
+    private boolean inPrintStatement = false;
 
     Interpreter()
     {
@@ -290,8 +291,10 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void>
     @Override
     public Void visitPrintStmt(Stmt.Print stmt)
     {
+        inPrintStatement = true;
         Object value = evaluate(stmt.expression);
         System.out.println(stringify(value));
+        inPrintStatement = false;
         return null;
     }
 
@@ -373,12 +376,14 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void>
                 {
                     return (double)left + (double)right;
                 }
-
                 if (left instanceof String && right instanceof String)
                 {
                     return (String)left + (String)right;
                 }
-
+                if (inPrintStatement)
+                {
+                    return stringify(left) + stringify(right);
+                }
                 throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
             case SLASH:
                 checkNumberOperands(expr.operator, left, right);

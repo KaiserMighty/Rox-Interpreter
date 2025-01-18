@@ -1,0 +1,9 @@
+var sum = 0;
+var start = clock();
+for (var i = 0; i < 1000; i = i + 1)
+{
+    sum = sum + i;
+}
+var time = clock() - start;
+print "The total sum value is " + sum;
+print "The elapsed time is " + time + "ms.";
