@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -33,6 +34,19 @@ public class Rox
 
     private static void runFile(String path) throws IOException
     {
+        Path filePath = Paths.get(path);
+        if (!Files.exists(filePath))
+        {
+            System.err.println("Error: File does not exist '" + path + "'.");
+            System.exit(1);
+        }
+        
+        if (!Files.isReadable(filePath))
+        {
+            System.err.println("Error: File is not readable '" + path + "'.");
+            System.exit(1);
+        }
+
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
         

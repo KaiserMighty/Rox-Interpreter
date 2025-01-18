@@ -1,9 +1,34 @@
-var sum = 0;
-var start = clock();
-for (var i = 0; i < 1000; i = i + 1)
+// Code Reference: https://github.com/KaiserMighty/NERSC-Perlmutter/blob/main/sum_performance_modelling/sum_direct.cpp
+// Results Reference: https://github.com/KaiserMighty/NERSC-Perlmutter/blob/main/sum_performance_modelling/sum_direct.txt
+
+func dirSum(n)
 {
-    sum = sum + i;
+    print "Problem size: " + n;
+    var sum = 0;
+    var startTime = clock();
+    for (var i = 0; i < n; i = i + 1)
+    {
+        sum = sum + i;
+    }
+    var endTime = clock();
+    print " The result is: " + sum;
+    return endTime - startTime;
 }
-var time = clock() - start;
-print "The total sum value is " + sum;
-print "The elapsed time is " + time + "ms.";
+
+var runtime = dirSum(8388608);
+print " Elapsed time: " + runtime;
+
+runtime = dirSum(16777216);
+print " Elapsed time: " + runtime;
+
+runtime = dirSum(33554432);
+print " Elapsed time: " + runtime;
+
+runtime = dirSum(67108864);
+print " Elapsed time: " + runtime;
+
+runtime = dirSum(134217728);
+print " Elapsed time: " + runtime;
+
+runtime = dirSum(268435456);
+print " Elapsed time: " + runtime;
