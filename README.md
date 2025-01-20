@@ -10,3 +10,10 @@ Run: `java interpreter.GenerateAst interpreter`
 Compile: `javac interpreter/*.java`  
 Run (Prompt): `java interpreter.Rox`  
 Run (File): `java interpreter.Rox test.rox`
+
+## C Build 
+### Compile and Run Project
+Compile: `make`  
+Clear: `make clean`  
+Run (Prompt): `./rox`  
+Run (File): `./rox test.rox`
