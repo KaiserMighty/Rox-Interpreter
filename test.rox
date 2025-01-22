@@ -1,8 +1,10 @@
-func fib(n)
+func outer()
 {
-    if (n < 2) return n;
-    return fib(n - 2) + fib(n - 1);
+    var x = "outside";
+    func inner()
+    {
+        print x;
+    }
+    inner();
 }
-var start = clock();
-print fib(35);
-print clock() - start;
+outer();
