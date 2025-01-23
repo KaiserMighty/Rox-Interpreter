@@ -1,19 +1,42 @@
 root@KrishnaDesktop:~/Rox-Language# java interpreter.Rox sum.rox
-Problem size: 8388608
- The result is: 3.5184367894528E13
- Elapsed time: 1.0460000038146973
-Problem size: 1.6777216E7
- The result is: 1.4073747996672E14
- Elapsed time: 1.8499999046325684
-Problem size: 3.3554432E7
- The result is: 5.62949936644096E14
- Elapsed time: 3.6429998874664307
-Problem size: 6.7108864E7
- The result is: 2.251799780130816E15
- Elapsed time: 7.228000164031982
-Problem size: 1.34217728E8
- The result is: 9.007199187632128E15
- Elapsed time: 17.437000036239624
-Problem size: 2.68435456E8
- The result is: 3.6028796817637376E16
- Elapsed time: 30.23099994659424
+Problem size:
+8388608
+The result is:
+3.5184367894528E13
+Elapsed time:
+1.195000171661377
+
+Problem size:
+1.6777216E7
+The result is:
+1.4073747996672E14
+Elapsed time:
+1.7939999103546143
+
+Problem size:
+3.3554432E7
+The result is:
+5.62949936644096E14
+Elapsed time:
+5.98199987411499
+
+Problem size:
+6.7108864E7
+The result is:
+2.251799780130816E15
+Elapsed time:
+7.878999948501587
+
+Problem size:
+1.34217728E8
+The result is:
+9.007199187632128E15
+Elapsed time:
+15.315000057220459
+
+Problem size:
+2.68435456E8
+The result is:
+3.6028796817637376E16
+Elapsed time:
+33.056999921798706

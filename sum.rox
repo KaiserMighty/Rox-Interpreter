@@ -3,7 +3,8 @@
 
 func dirSum(n)
 {
-    print "Problem size: " + n;
+    print "Problem size:";
+    print n;
     var sum = 0;
     var startTime = clock();
     for (var i = 0; i < n; i = i + 1)
@@ -11,24 +12,36 @@ func dirSum(n)
         sum = sum + i;
     }
     var endTime = clock();
-    print " The result is: " + sum;
+    print "The result is:";
+    print sum;
     return endTime - startTime;
 }
 
 var runtime = dirSum(8388608);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;
+print " ";
 
 runtime = dirSum(16777216);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;
+print " ";
 
 runtime = dirSum(33554432);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;
+print " ";
 
 runtime = dirSum(67108864);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;
+print " ";
 
 runtime = dirSum(134217728);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;
+print " ";
 
 runtime = dirSum(268435456);
-print " Elapsed time: " + runtime;
+print "Elapsed time:";
+print runtime;

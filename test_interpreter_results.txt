@@ -1,0 +1,3 @@
+root@KrishnaDesktop:~/Rox-Language# java interpreter.Rox test.rox
+25.683000087738037
+1.00000002E8

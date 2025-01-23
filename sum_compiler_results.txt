@@ -1,0 +1,42 @@
+root@KrishnaDesktop:~/Rox-Language# ./rox sum.rox
+Problem size:
+8.38861e+06
+The result is:
+3.51844e+13
+Elapsed time:
+1.37139
+
+Problem size:
+1.67772e+07
+The result is:
+1.40737e+14
+Elapsed time:
+2.7702
+
+Problem size:
+3.35544e+07
+The result is:
+5.6295e+14
+Elapsed time:
+5.53558
+
+Problem size:
+6.71089e+07
+The result is:
+2.2518e+15
+Elapsed time:
+11.133
+
+Problem size:
+1.34218e+08
+The result is:
+9.0072e+15
+Elapsed time:
+21.7491
+
+Problem size:
+2.68435e+08
+The result is:
+3.60288e+16
+Elapsed time:
+43.0856

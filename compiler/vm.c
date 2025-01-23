@@ -40,7 +40,7 @@ static void runtimeError(const char* format, ...)
         fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
         if (function->name == NULL)
         {
-            fprintf(stderr, "scipt\n");
+            fprintf(stderr, "script\n");
         }
         else
         {
@@ -260,6 +260,7 @@ static bool isFalsey(Value value)
 
 static void concatenate()
 {
+    printf("test");
     ObjString* b = AS_STRING(peek(0));
     ObjString* a = AS_STRING(peek(1));
     int length = a->length + b->length;

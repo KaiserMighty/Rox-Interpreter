@@ -1,0 +1,3 @@
+root@KrishnaDesktop:~/Rox-Language# ./rox test.rox
+14.1571
+1e+08
